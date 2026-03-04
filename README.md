@@ -157,6 +157,8 @@ kubeseal \
 
 You just provide the custom domain that you got from Hostinger or any other relevant website
 
+Add the DNS Record Values to the Hostinger DNS Nameservers
+
 #### 10. And for SSL certificate you can use ACM certificate
 
 a. Click on Request Certificate 
@@ -166,14 +168,6 @@ b. Enter the Fully Qualified Domain Name and click on Request keeping the rest a
 c. Click on Create a Route53 Record
 
 d. This will create a CNAME record on your Hosted Zone.
-
-#### 11. Verify the Certificate 
-
-a. Go to your domain hosting website 
-
-b. Go to your Domain -> DNS/Nameservers -> Add Record -> CNAME 
-
-c. This will verify the request and show the status as Success after some time
 
 #### 12. Add the certificate to the annotations section of Ingress
 
