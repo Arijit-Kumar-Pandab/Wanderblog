@@ -176,13 +176,13 @@ alb.ingress.kubernetes.io/ssl-redirect: '443'
 alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-south-1:829058667760:certificate/a011b35b-b2bf-435e-9cca-a1e7827031a3
 ```
 
-#### 13. Apply all the manifest files.
+#### 13. Deploy the application using ArgoCD.
 
-a. Execute the command
+a. Login to the ArgoCD application with the help of LoadBalancer DNS 
 
-```
-kubectl apply -f kubernetes-manifests/*
-```
+b. Create New App
+
+c. Add all the details, repository name along with Path for kubernetes manifests.
 
 #### 14. Add the A record in Route53
 
