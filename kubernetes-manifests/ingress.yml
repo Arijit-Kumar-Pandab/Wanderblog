@@ -3,7 +3,6 @@ kind: Ingress
 metadata:
   name: app-ingress
   annotations:
-      annotations:
       # AWS ALB Ingress Controller Settings
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/load-balancer-name: wanderblog-ingress
