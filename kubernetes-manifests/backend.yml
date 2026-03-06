@@ -12,6 +12,14 @@ spec:
       labels:
         app: backend
     spec:
+      terminationGracePeriodSeconds: 10
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:	
+            - labelSelector:	
+                matchLabels:	
+                  app: backend
+              topologyKey: topology.kubernetes.io/zone
       containers:
         - name: backend
           image: gauris17/wanderblog-backend:v1
