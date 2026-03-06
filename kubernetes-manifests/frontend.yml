@@ -14,6 +14,14 @@ spec:
       labels:
         app: frontend
     spec:
+      terminationGracePeriodSeconds: 10
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:	
+            - labelSelector:	
+                matchLabels:	
+                  app: frontend	
+              topologyKey: topology.kubernetes.io/zone
       containers:
         - name: frontend
           image: gauris17/wanderblog-frontend:v1
