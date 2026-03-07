@@ -29,7 +29,7 @@ managedNodeGroups:
         autoScaler: true
         externalDNS: false
         certManager: yes
-        ebs: false
+        ebs: true
         fsx: false
         efs: false
         albIngress: true
