@@ -2,27 +2,31 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mongo
+  namespace: default
 spec:
-  serviceName: mongo-service        # must match your headless Service name
+  serviceName: mongo-service
   replicas: 2
-  podManagementPolicy: OrderedReady # fixed casing
   selector:
     matchLabels:
       app: mongo
+
   template:
     metadata:
       labels:
         app: mongo
     spec:
-      # removed invalid 'service: mongo-service' field
-      terminationGracePeriodSeconds: 10
+      # 🔥 FORCE EC2 NODE GROUP
+      nodeSelector:
+        eks.amazonaws.com/compute-type: ec2
+
       affinity:
         podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:	
-            - labelSelector:	
-                matchLabels:	
-                  app: mongo	
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: mongo
               topologyKey: topology.kubernetes.io/zone
+
       containers:
         - name: mongo
           image: mongo:6
@@ -31,12 +35,14 @@ spec:
           envFrom:
             - secretRef:
                 name: mongo-secrets
+
   volumeClaimTemplates:
     - metadata:
         name: mongo-pvc
       spec:
-        accessModes: ["ReadWriteOnce"]   # changed from ReadWriteOncePod
-        storageClassName: "mongo-storage"
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: gp3   # 🔥 IMPORTANT FIX
         resources:
           requests:
             storage: 5Gi
