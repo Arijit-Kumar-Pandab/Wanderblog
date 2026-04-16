@@ -15,9 +15,16 @@ spec:
       labels:
         app: mongo
     spec:
-      # 🔥 FORCE EC2 NODE GROUP
+      # 🔥 Force scheduling on EC2 nodes
       nodeSelector:
         eks.amazonaws.com/compute-type: ec2
+
+      # 🔥 REQUIRED: allow scheduling on tainted EC2 nodes
+      tolerations:
+        - key: "eks.amazonaws.com/compute-type"
+          operator: "Equal"
+          value: "ec2"
+          effect: "NoSchedule"
 
       affinity:
         podAntiAffinity:
