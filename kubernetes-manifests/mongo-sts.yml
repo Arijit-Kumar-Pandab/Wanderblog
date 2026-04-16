@@ -42,7 +42,7 @@ spec:
       spec:
         accessModes:
           - ReadWriteOnce
-        storageClassName: gp3   # 🔥 IMPORTANT FIX
+        storageClassName: mongo-storage   # 🔥 IMPORTANT FIX
         resources:
           requests:
             storage: 5Gi
