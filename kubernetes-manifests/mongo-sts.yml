@@ -42,7 +42,6 @@ spec:
       spec:
         accessModes:
           - ReadWriteOnce
-        storageClassName: mongo-storage   # 🔥 IMPORTANT FIX
         resources:
           requests:
             storage: 5Gi
